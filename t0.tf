@@ -27,8 +27,8 @@ resource "nsxt_policy_tier0_gateway" "terraform-vrf" {
       auto_mode      = false
       import_targets = ["62000:2"]
       export_targets = ["62000:3", "10.2.2.0:3"]
-    }*/
-  }
+    }
+  }*/
 }
 
 resource "nsxt_policy_tier0_gateway_interface" "terraform-interface-01" {
@@ -38,7 +38,7 @@ resource "nsxt_policy_tier0_gateway_interface" "terraform-interface-01" {
   gateway_path   = nsxt_policy_tier0_gateway.p1w01ec01t0gw03.path
   segment_path   = nsxt_policy_vlan_segment.terraform-segment.path
   subnets        = ["172.23.50.2/24"]
-  depends_on = [nsxt_policy_tier0_gateway_interface.parent_uplink1]
+  depends_on     = [nsxt_policy_tier0_gateway_interface.parent_uplink1]
 }
 
 resource "nsxt_policy_tier0_gateway_interface" "terraform-interface-02" {
@@ -48,7 +48,7 @@ resource "nsxt_policy_tier0_gateway_interface" "terraform-interface-02" {
   gateway_path   = nsxt_policy_tier0_gateway.p1w01ec01t0gw03.path
   segment_path   = nsxt_policy_vlan_segment.terraform-segment.path
   subnets        = ["172.23.50.3/24"]
-  depends_on = [nsxt_policy_tier0_gateway_interface.parent_uplink1]
+  depends_on     = [nsxt_policy_tier0_gateway_interface.parent_uplink1]
 }
 
 resource "nsxt_policy_static_route" "terraform-default-route" {
@@ -60,3 +60,4 @@ resource "nsxt_policy_static_route" "terraform-default-route" {
     admin_distance = "1"
     ip_address     = "172.23.50.1"
   }
+}
