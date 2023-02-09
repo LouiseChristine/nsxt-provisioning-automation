@@ -12,9 +12,9 @@ terraform {
 }
 
 provider "nsxt" {
-  host                  = "10.246.2.75"
-  username              = "louise_09496@dialogcloud.local"
-  password              = "JakeSully@09"
+  host                  = var.nsx_manager
+  username              = var.nsxt_username
+  password              = var.password
   allow_unverified_ssl  = true
   max_retries           = 10
   retry_min_delay       = 500
@@ -24,11 +24,11 @@ provider "nsxt" {
 
 
 provider "vcd" {
-  user              = "louise_09496"
-  password          = "JakeSully@09"
+  user              = var.vcd_username
+  password          = var.password
   auth_type         = "integrated"
   org               = "System"
-  url               = "https://vcloud.dialogcloud.lk"
+  url               = "https://vcloud.dialogcloud.lk/api"
   max_retry_timeout = 500
   #allow_unverified_ssl = var.vcd_allow_unverified_ssl
 }
