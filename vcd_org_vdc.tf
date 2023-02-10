@@ -1,7 +1,7 @@
 resource "vcd_org" "terraform-org" {
-  name             = "terraform-org"
-  full_name        = "terraform-org"
-  description      = "terraform-org"
+  name             = var.org_name
+  full_name        = var.org_name
+  description      = var.org_name
   is_enabled       = true
   delete_recursive = true
   delete_force     = true
@@ -19,17 +19,17 @@ resource "vcd_org" "terraform-org" {
 }
 
 resource "vcd_org_user" "terraform-org-admin" {
-  org = "terraform-org"
+  org = var.org_name
 
-  name        = "terraform-org-admin"
-  description = "terraform org admin"
+  name        = var.org_admin_name
+  description = var.org_admin_name
   role        = "Organization Administrator"
   password    = "Dialog@123"
 }
 
 resource "vcd_org_vdc" "terraform-vdc" {
-  name = "terraform-vdc"
-  org  = "terraform-org"
+  name = var.vdc_name
+  org  = var.org_name
 
   allocation_model  = "AllocationPool"
   provider_vdc_name = "p1w01pvdc01"
@@ -38,24 +38,24 @@ resource "vcd_org_vdc" "terraform-vdc" {
 
   compute_capacity {
     cpu {
-      allocated = "100"
-      limit     = "100"
+      allocated = var.cpu_allocated
+      limit     = var.cpu_limit
     }
 
     memory {
-      allocated = "1024"
-      limit     = "1024"
+      allocated = var.memory_allocated
+      limit     = var.memory_limit
     }
   }
 
   storage_profile {
     name    = "SSD Storage"
     enabled = true
-    limit   = 1024
+    limit   = var.storage_limit
     default = true
   }
 
-  network_quota            = "2"
+  network_quota            = var.network_quota
   enabled                  = true
   enable_thin_provisioning = false
   enable_fast_provisioning = false

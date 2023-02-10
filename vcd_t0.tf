@@ -1,6 +1,6 @@
 resource "vcd_external_network_v2" "terraform-vrf" {
-  name        = "terraform-vrf"
-  description = "terraform-vrf"
+  name        = var.vcd_vrf_name
+  description = var.vcd_vrf_name
 
   nsxt_network {
     nsxt_manager_id      = data.vcd_nsxt_manager.p1w01nsx01.id

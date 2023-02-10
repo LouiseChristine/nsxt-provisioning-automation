@@ -1,9 +1,7 @@
-#terraform import nsxt_policy_tier0_gateway.tier0_gw ID
-
 resource "nsxt_policy_tier0_gateway" "terraform-vrf" {
   depends_on   = [data.nsxt_policy_tier0_gateway.p1w01ec01t0gw03]
-  description  = "Tier-0 VRF provisioned by Terraform"
-  display_name = "terraform-vrf"
+  #description  = "Tier-0 VRF provisioned by Terraform"
+  display_name = var.nsxt_vrf_name
   #failover_mode            = "PREEMPTIVE"
   default_rule_logging     = false
   enable_firewall          = false
@@ -34,31 +32,31 @@ resource "nsxt_policy_tier0_gateway" "terraform-vrf" {
 
 resource "nsxt_policy_tier0_gateway_interface" "terraform-interface-01" {
   #depends_on     = [data.nsxt_policy_tier0_gateway_interface.parent_uplink1]
-  display_name   = "terraform-interface-01"
+  display_name   = var.interface_01
   type           = "EXTERNAL"
   edge_node_path = data.nsxt_policy_edge_node.p1w01en05.path
   gateway_path   = nsxt_policy_tier0_gateway.terraform-vrf.path
   segment_path   = nsxt_policy_vlan_segment.terraform-segment.path
-  subnets        = ["172.23.50.2/24"]
+  subnets        = [var.interface_01_subnets]
 }
 
 resource "nsxt_policy_tier0_gateway_interface" "terraform-interface-02" {
   #depends_on     = [nsxt_policy_tier0_gateway_interface.parent_uplink1]
-  display_name   = "terraform-interface-02"
+  display_name   = var.interface_02
   type           = "EXTERNAL"
   edge_node_path = data.nsxt_policy_edge_node.p1w01en06.path
   gateway_path   = nsxt_policy_tier0_gateway.terraform-vrf.path
   segment_path   = nsxt_policy_vlan_segment.terraform-segment.path
-  subnets        = ["172.23.50.3/24"]
+  subnets        = [var.interface_02_subnets]
 }
 
 resource "nsxt_policy_static_route" "terraform-default-route" {
-  display_name = "terraform-default-route"
+  display_name = var.default_route
   gateway_path = nsxt_policy_tier0_gateway.terraform-vrf.path
   network      = "0.0.0.0/0"
 
   next_hop {
     admin_distance = "1"
-    ip_address     = "172.23.50.1"
+    ip_address     = var.gateway
   }
 }
