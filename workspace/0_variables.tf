@@ -1,8 +1,3 @@
-## Variables ## NSX Manager ##
-variable "nsx_manager" {
-    default = "10.246.2.75"
-}
-
 # Username & Password for NSX-T Manager
   variable "nsxt_username" {
   default = "louise_09496@dialogcloud.local"
@@ -17,62 +12,24 @@ variable "password" {
     default = "JakeSully@09"
 }
 
-# Variables in NSX-T Segment creation
-variable "segment_name" {
-  default = "terraform-segment"
-}
-
+## NSX-T Provisioning: Segment, T0-VRF
 variable "vlan" {
   default = "449"
-}
-
-# Variables in NSX-T T0-VRF Creation
-variable "nsxt_vrf_name" {
-  default = "terraform-vrf"
-}
-
-variable "interface_01" {
-  default = "terraform-interface-01"
 }
 
 variable "interface_01_subnets" {
   default = "172.23.50.2/24"
 }
 
-variable "interface_02" {
-  default = "terraform-interface-02"
-}
-
 variable "interface_02_subnets" {
   default = "172.23.50.3/24"
-}
-
-variable "default_route" {
-  default = "terraform-default-route"
 }
 
 variable "gateway"{
   default = "172.23.50.1"
 }
 
-
-## Variables ## VCD ##
-
-# Org name
-variable "org_name" {
-  default = "terraform-org"
-}
-
-# vDC Name
-variable "vdc_name" {
-  default = "terraform-vdc"
-}
-
-# Org admin user
-variable "org_admin_name"{
-  default = "terraform-org-admin"
-}
-
+## VCD Provisioning: VDC Spec
 variable "cpu_allocated" {
   default = "10"            # in MHz
 }
@@ -97,12 +54,49 @@ variable "network_quota" {
   default = "2"
 }
 
+#####################################################################
+## Variables ## NSX Manager ##
+variable "nsx_manager" {
+    default = "10.246.2.75"
+}
+
+variable "segment_name" {
+  default = "terraform-segment"
+}
+
+variable "nsxt_vrf_name" {
+  default = "terraform-vrf"
+}
+
+variable "interface_01" {
+  default = "terraform-interface-01"
+}
+
+variable "interface_02" {
+  default = "terraform-interface-02"
+}
+
+variable "default_route" {
+  default = "terraform-default-route"
+}
+
+## Variables ## VCD ##
+variable "org_name" {
+  default = "terraform-org"
+}
+
+variable "vdc_name" {
+  default = "terraform-vdc"
+}
+
+variable "org_admin_name"{
+  default = "terraform-org-admin"
+}
 
 # Importing NSX-T VRF to VCD
 variable "vcd_vrf_name" {
   default = "terraform-vrf"
 }
-
 
 # Create T1 in VCD
 variable "vcd_edgegateway" {

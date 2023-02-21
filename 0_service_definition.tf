@@ -1,3 +1,9 @@
+locals {
+  org_id = "IDC00xx"
+  vcd_subnumber = "099xx"
+  cx_name = "terraform"
+}
+
 # the NSX-T Transport Zone Uplink
 data "nsxt_policy_transport_zone" "VCF-edge_p1w01ec03_uplink-tz" {
   display_name = "VCF-edge_p1w01ec03_uplink-tz"
@@ -26,19 +32,8 @@ data "vcd_nsxt_manager" "p1w01nsx01" {
   name = "p1w01nsx01"
 }
 
-data "vcd_nsxt_tier0_router" "router" {
+/*data "vcd_nsxt_tier0_router" "router" {
   name            = "terraform-vrf"
   nsxt_manager_id = data.vcd_nsxt_manager.p1w01nsx01.id
-}
-
-/*data "vcd_org" "org" {
-  name = "terraform-org"
-}
-
-data "vcd_org_vdc" "vdc1" {
-  name = "terraform-vdc"
-}
-
-data "vcd_external_network_v2" "nsxt-ext-net" {
-  name = "terraform-vrf"
 }*/
+
