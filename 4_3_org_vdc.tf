@@ -1,4 +1,4 @@
-resource "vcd_org" "terraform-org" {
+/*resource "vcd_org" "terraform-org" {
   name             = var.org_name
   full_name        = var.org_name
   description      = var.org_name
@@ -18,6 +18,8 @@ resource "vcd_org" "terraform-org" {
   }
 }
 
+
+
 resource "vcd_org_user" "terraform-org-admin" {
   org = var.org_name
 
@@ -27,6 +29,7 @@ resource "vcd_org_user" "terraform-org-admin" {
   password    = "Dialog@123"
 }
 
+*/
 resource "vcd_org_vdc" "terraform-vdc" {
   name = var.vdc_name
   org  = var.org_name
