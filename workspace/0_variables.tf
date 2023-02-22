@@ -54,14 +54,19 @@ variable "network_quota" {
   default = "2"
 }
 
-#####################################################################
+/*#####################################################################
+replace all "terraform" with "subnumber-cx_name"
+replace "terraform-org" with "org_id-cx_name"
+#####################################################################*/
+
+
 ## Variables ## NSX Manager ##
 variable "nsx_manager" {
     default = "10.246.2.75"
 }
 
 variable "segment_name" {
-  default = "terraform-segment"
+  default = "terraform-segment"  
 }
 
 variable "nsxt_vrf_name" {
