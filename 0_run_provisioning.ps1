@@ -60,3 +60,10 @@ Start-Sleep -Milliseconds 1500;
 Push-Location "C:\Users\louise_09496\Documents\EC 2.0 Provisioning"
 
 #>
+Start-Sleep 300; 
+Set-Location .\workspace
+.\1_remove_all.ps1
+
+Start-Sleep 300;
+Push-Location "C:\Users\louise_09496\Documents\EC 2.0 Provisioning" 
+.\2_put_files_back.ps1
