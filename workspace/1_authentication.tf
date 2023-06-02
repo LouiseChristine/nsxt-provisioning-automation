@@ -2,11 +2,11 @@ terraform {
   required_providers {
     nsxt = {
       source  = "vmware/nsxt"
-      version = "3.3.0"
+      version = "3.3.1"
     }
     vcd = {
       source  = "vmware/vcd"
-      version = "3.8.2"
+      version = "3.9.0"
     }
   }
 }
